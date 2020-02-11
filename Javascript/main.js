@@ -13,7 +13,9 @@ var firebaseConfig = {
 
   var database = firebase.database();
 
-  $(".submit").on("click", function(){ 
+  $(".submit").on("click", function(event){
+    
+    event.preventDefault();
 
     var ccaKey = "20250d43dabf3feedeba";
     var from = $(".from").val();
@@ -33,10 +35,10 @@ var firebaseConfig = {
       console.log("-------------------------------");
       console.log(response);
   
-      var test = Object.keys(response)[0];
+      var test = Object.values(response)[0];
       var newRate = amount * test;
-  
-      console.log(test);
+
+      console.log(to)
       console.log(newRate)
   
       $(".newCountry").append(to);
@@ -49,16 +51,16 @@ var firebaseConfig = {
   // Currency Converter Country List //
   // ============================================= //
   
-  $.ajax({
-    url: "https://free.currconv.com/api/v7/currencies?apiKey=20250d43dabf3feedeba",
-    method: "GET"
-  }).then(function(response) {
-    console.log(" ");
-    console.log("-------------------------------");
-    console.log("Currency Converter Country List");
-    console.log("-------------------------------");
-    console.log(response);
-  });
+  // $.ajax({
+  //   url: "https://free.currconv.com/api/v7/currencies?apiKey=20250d43dabf3feedeba",
+  //   method: "GET"
+  // }).then(function(response) {
+  //   console.log(" ");
+  //   console.log("-------------------------------");
+  //   console.log("Currency Converter Country List");
+  //   console.log("-------------------------------");
+  //   console.log(response);
+  // });
   
   // Financial Modeling Prep API //
   // ============================================= //  
