@@ -1,0 +1,60 @@
+header{
+    border: 5px solid black; 
+    height: 150px;
+    color:red ;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+  
+  }
+ 
+ span{
+   margin-left: 10px;
+ }
+ 
+ 
+ 
+ body{ 
+        text-align: center; 
+        font-size:large;
+        font-style: italic;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, "sans-serif"; 
+        text-emphasis-color: black;
+        image-rendering:auto;
+ }
+
+
+form{
+    background-color: gray;
+        border-radius: 5px;
+        padding: 35px;
+      }
+
+
+
+
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: .5px solid black;
+  border-radius: 16px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: red;
+  color: whitesmoke;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: limegreen;
+}
+
+
