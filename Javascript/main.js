@@ -17,6 +17,12 @@ $(".submit").on("click", function (event) {
 
   event.preventDefault();
 
+  var main = $("#resultsArea")
+  var resultContainer = $("<div class='outputField'>");
+  var resultSymbol = $("<div class='newSymbol'>");
+  var resultAmount = $("<div class='newAmount'>");
+  var resultCountry = $("<div class='newCountry'>");
+
   var ccaKey = "20250d43dabf3feedeba";
   var from = $(".from").val();
   var to = $(".to").val();
@@ -43,10 +49,8 @@ $(".submit").on("click", function (event) {
     console.log(to)
     console.log(newRate)
 
-    $(".newCountry").append(" ", to);
-    $(".newAmount").append(" ", newRate);
-
-    // reset()
+    resultCountry.append(" ", to);
+    resultAmount.append(" ", newRate);
 
   });
 
@@ -72,12 +76,21 @@ $(".submit").on("click", function (event) {
       console.log(objectToArray[i].id);
       console.log(to)
       if (to === objectToArray[i].id) {
-        $(".newSymbol").append(symbol);
+        resultSymbol.append(symbol);
         console.log(symbol);
       }
     }
 
   });
+
+  resultContainer.append(amount + " " + from + " = ")
+  resultContainer.append(resultSymbol);
+  resultContainer.append(resultAmount);
+  resultContainer.append(resultCountry);
+
+  main.append(resultContainer)
+  main.css('font-size', '30px')
+   
 });
 
 

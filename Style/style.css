@@ -2,8 +2,15 @@ header{
     border: 5px solid black; 
     height: 150px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+    display: flex;
+    justify-content: center;
+    align-content: center;
   
   }
+
+h2 {
+  padding-top: 9%;
+}
  
  span{
    margin-left: 10px;
@@ -54,6 +61,29 @@ input[type=submit] {
 
 input[type=submit]:hover {
   background-color: limegreen;
+}
+
+.outputField {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  background-color: gray;
+  color: white;
+
+  border-radius: 5px;
+  padding: 15px;
+  width: 95%;
+  margin-left: 13.5px;
+
+}
+
+.newSymbol {
+  margin-left: 3.5px;
+}
+
+.newAmount {
+  margin: 0px 3.5px 0px 0px;
 }
 
 
