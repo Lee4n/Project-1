@@ -42,13 +42,13 @@
   
     <form>
       <label for="amount"></label>
-      <input type="text" id="amount" name="amount" class="amount" placeholder="ENTER AMOUNT OF MONEY TO CONVERT HERE....">
+      <input type="text" id="amount" name="amount" class="amount" placeholder="ENTER AMOUNT OF MONEY TO CONVERT HERE...." required>
 
       <label for="from"></label>
-      <input type="text" id="from" name="from" class="from" placeholder="ENTER TYPE OF CURENCY TO CONVERT FROM:">
+      <input type="text" id="from" name="from" class="from" placeholder="ENTER TYPE OF CURENCY TO CONVERT FROM:" required>
 
       <label for="to"></label>
-      <input type="text" id="to" name="to" class="to" placeholder="ENTER TYPE OF CURENCY TO CONVERT TO:">
+      <input type="text" id="to" name="to" class="to" placeholder="ENTER TYPE OF CURENCY TO CONVERT TO:" required>
 
       <input type="submit" value="GET CONVERSION" class="submit">
     </form>
@@ -59,6 +59,7 @@
   <div class="row">
   <div class="outputField">
     <div class="newCountry"></div>
+    <div class="newSymbol"></div>
     <div class="newAmount"></div>
   </div>
   </div>
