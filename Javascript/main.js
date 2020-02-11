@@ -97,19 +97,48 @@ $.ajax({
 
   $(".dowJones").append(" ", response.majorIndexesList[0].indexName);
   $(".dowJones2").append(" ", response.majorIndexesList[0].price);
-  $(".dowJones2").css('color', '#32CD32');
+  $(".dowJones2").css('color', '#1E90FF');
+  if (response.majorIndexesList[0].changes < 0) {
+    $(".dowJones3").append(" ", response.majorIndexesList[0].changes);
+    $(".dowJones3").css('color', '#FF0000');
+  } else if (response.majorIndexesList[0].changes > 0) {
+    $(".dowJones3").append(" ", response.majorIndexesList[0].changes);
+    $(".dowJones3").css('color', '#32CD32');
+  }
+  
 
   $(".nasdaq").append(" ", response.majorIndexesList[1].indexName);
   $(".nasdaq2").append(" ", response.majorIndexesList[1].price);
-  $(".nasdaq2").css('color', '#32CD32');
+  $(".nasdaq2").css('color', '#1E90FF');
+  if (response.majorIndexesList[1].changes < 0) {
+    $(".nasdaq3").append(" ", response.majorIndexesList[1].changes);
+    $(".nasdaq3").css('color', '#FF0000');
+  } else if (response.majorIndexesList[1].changes > 0) {
+    $(".nasdaq3").append(" ", response.majorIndexesList[1].changes);
+    $(".nasdaq3").css('color', '#32CD32');
+  }
 
   $(".sp").append(" ", response.majorIndexesList[2].indexName);
   $(".sp2").append(" ", response.majorIndexesList[2].price);
-  $(".sp2").css('color', '#32CD32');
+  $(".sp2").css('color', '#1E90FF');
+  if (response.majorIndexesList[2].changes < 0) {
+    $(".sp3").append(" ", response.majorIndexesList[2].changes);
+    $(".sp3").css('color', '#FF0000');
+  } else if (response.majorIndexesList[2].changes > 0) {
+    $(".sp3").append(" ", response.majorIndexesList[2].changes);
+    $(".sp3").css('color', '#32CD32');
+  }
 
   $(".cac").append(" ", response.majorIndexesList[3].indexName);
   $(".cac2").append(" ", response.majorIndexesList[3].price);
-  $(".cac2").css('color', '#32CD32');
+  $(".cac2").css('color', '#1E90FF');
+  if (response.majorIndexesList[3].changes < 0) {
+    $(".cac3").append(" ", response.majorIndexesList[3].changes);
+    $(".cac3").css('color', '#FF0000');
+  } else if (response.majorIndexesList[3].changes > 0) {
+    $(".cac3").append(" ", response.majorIndexesList[3].changes);
+    $(".cac3").css('color', '#32CD32');
+  }
 });
 
 // Reset Form //
