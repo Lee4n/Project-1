@@ -96,16 +96,20 @@ $.ajax({
   console.log(response);
 
   $(".dowJones").append(" ", response.majorIndexesList[0].indexName);
-  $(".dowJones").append(" ", response.majorIndexesList[0].price);
+  $(".dowJones2").append(" ", response.majorIndexesList[0].price);
+  $(".dowJones2").css('color', '#32CD32');
 
   $(".nasdaq").append(" ", response.majorIndexesList[1].indexName);
-  $(".nasdaq").append(" ", response.majorIndexesList[1].price);
+  $(".nasdaq2").append(" ", response.majorIndexesList[1].price);
+  $(".nasdaq2").css('color', '#32CD32');
 
   $(".sp").append(" ", response.majorIndexesList[2].indexName);
-  $(".sp").append(" ", response.majorIndexesList[2].price);
+  $(".sp2").append(" ", response.majorIndexesList[2].price);
+  $(".sp2").css('color', '#32CD32');
 
   $(".cac").append(" ", response.majorIndexesList[3].indexName);
-  $(".cac").append(" ", response.majorIndexesList[3].price);
+  $(".cac2").append(" ", response.majorIndexesList[3].price);
+  $(".cac2").css('color', '#32CD32');
 });
 
 // Reset Form //
