@@ -26,21 +26,29 @@
 
 </head>
 
-<body>
+<body style="background-image: url(Images/projbackground.jpg);">
   <div class="container">
   
   <header>
     <h2>
       <marquee> 
         <span class="dowJones"></span>
+        <span class="dowJones2"></span>
+        <span class="dowJones3"></span>
         <span class="nasdaq"></span>
+        <span class="nasdaq2"></span>
+        <span class="nasdaq3"></span>
         <span class="sp"></span>
+        <span class="sp2"></span>
+        <span class="sp3"></span>
         <span class="cac"></span> 
+        <span class="cac2"></span>
+        <span class="cac3"></span>
       </marquee>
     </h2>
   </header>
   
-    <form>
+    <form class="form">
       <label for="amount"></label>
       <input type="text" id="amount" name="amount" class="amount" placeholder="ENTER AMOUNT OF MONEY TO CONVERT HERE...." required>
 
@@ -55,15 +63,11 @@
     <br><br>
 
      <!-- Output Field -->
-  <!-- ==================================== -->
-  <div class="row">
-  <div class="outputField">
-    <div class="newCountry"></div>
-    <div class="newSymbol"></div>
-    <div class="newAmount"></div>
-  </div>
-  </div>
-  <br><br><br>
+    <!-- ==================================== -->
+    <div class="row" id="resultsArea">
+      
+    </div>
+    <br><br><br>
 
   </div>
 

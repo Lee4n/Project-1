@@ -1,15 +1,26 @@
 header{
     border: 5px solid black; 
     height: 150px;
-    color:red ;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    color: white;
   
   }
+
+h2 {
+  padding-top: 4%;
+}
  
  span{
    margin-left: 10px;
  }
  
+ .form {
+   margin-top: 5%;
+   opacity: 0.9;
+ }
  
  
  body{ 
@@ -19,11 +30,14 @@ header{
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, "sans-serif"; 
         text-emphasis-color: black;
         image-rendering:auto;
+        background-size: cover;
+        background-repeat: no-repeat;
  }
 
 
 form{
-    background-color: gray;
+    background-color: rgb(167, 148, 148);
+    
         border-radius: 5px;
         padding: 35px;
       }
@@ -55,6 +69,29 @@ input[type=submit] {
 
 input[type=submit]:hover {
   background-color: limegreen;
+}
+
+.outputField {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  background-color: gray;
+  color: white;
+
+  border-radius: 5px;
+  padding: 15px;
+  width: 95%;
+  margin-left: 13.5px;
+
+}
+
+.newSymbol {
+  margin-left: 3.5px;
+}
+
+.newAmount {
+  margin: 0px 3.5px 0px 0px;
 }
 
 
