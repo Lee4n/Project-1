@@ -77,7 +77,6 @@ $(".submit").on("click", function (event) {
       console.log(to)
       if (to === objectToArray[i].id) {
         resultSymbol.append(symbol);
-        console.log(symbol);
       }
     }
 
@@ -92,8 +91,6 @@ $(".submit").on("click", function (event) {
   main.css('font-size', '30px')
    
 });
-
-
 
 // Financial Modeling Prep API //
 // ============================================= //  
