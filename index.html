@@ -16,6 +16,99 @@
 </head>
 
 <body>
+    <header><h2>
+        <marquee>  <span class="dowJones"></span>
+          <span class="nasdaq"></span>
+          <span class="sp"></span>
+          <span class="cac"></span> </marquee>
+          </h2>
+        </header>
+        
+    
+     
+    
+    
+    
+    <body  background-image=url("https://www.france-hotel-guide.com/en/blog/wp-content/uploads/2018/12/Cash-Euros-Dollars.jpg")
+    style= "z-index: -1; opacity: 0.7">
+    
+    
+    <div>
+      <form action="/action_page.php">
+        <label for="fname">MONEY AMOUNT TO CONVERT</label>
+        <input type="text" id="fname" name="firstname" placeholder="ENTER AMOUNT OF MONEY TO CONVERT HERE....">
+    
+        <label for="lname">CURRENCY TO CONVERT FROM </label>
+        <input type="text" id="lname" name="lastname" placeholder="ENTER TYPE OF CURENCY TO CONVERT FROM:">
+    
+        <label for="country">COUNTRY OR TYPE OF CURRENCY TO COVERT TO</label>
+        <select id="country" name="country">
+          <option value="united states">USD-U.S Dollar</option>
+          <option value="canada">CAD-Canadian Dollar</option>
+          <option value="europe">EUR-Europe Euro</option>
+          <option value="mexico">MXN-Mexican Peso</option>
+          <option value="chinese">CNY-Chinese Yuan</option>
+          <option value="bitcoin">BTC-Bitcoin</option>
+        </select>
+      
+        <input type="submit" value="SUBMIT TO GET CONVERSION" class="submit">   
+      </form>
+      </div>
+    
+      <div class="stockData"></div> <!-- maybe put these in cards? can get more info displayed if you need it-->
+      
+      <div class="userForm">
+        <form>
+    
+            <!-- User Amount of Money -->
+            <!-- ==================================== -->
+            <p><input type="text" class="amount" placeholder="Money Amount:"></p> <!-- user inputs amount of money to exchange -->
+            <br>
+    
+            <!-- Country to exchange FROM -->
+            <!-- ==================================== -->
+            <div class="fromCountry"> <!-- maybe make these appear as a list of options, let them type in which country code to make it easier to capture the input -->
+                <p>EUR-Euro, MXN-Mexican Peso, CAD-Canadian Dollar, CNY-Chinese Yuan, BTC-Bitcoin, USD-U.S. Dollar</p>
+                <p><input type="text" placeholder="From: EUR" class="from"></p>
+            </div>
+            <hr>
+    
+            <!-- Country to Exchange TO -->
+            <!-- ==================================== -->
+            <div class="toCountry"><!-- maybe make these appear as a list of options, let them type in which country code to make it easier to capture the input -->
+                <p>EUR-Euro, MXN-Mexican Peso, CAD-Canadian Dollar, CNY-Chinese Yuan, BTC-Bitcoin, USD-U.S. Dollar</p>
+                <p><input type="text" placeholder="To: USD" class="to"></p>
+            </div>
+    
+            <!-- Submit Button -->
+            <!-- ==================================== -->
+            <input type="button" value="Submit" class="submit">
+    
+        </form>
+    </div>
+    <br><br><br>
+    
+    
+    
+    
+    <!-- Output Field -->
+    <!-- ==================================== -->
+    <div class="outputField">
+        <div class="newCountry"></div>
+        <div class="newAmount"></div>
+    </div>
+    <br><br><br>
+    
+    <!-- Stock Market API Output -->
+    <!-- ==================================== -->
+    <div class="stockData"> <!-- maybe put these in cards? can get more info displayed if you need it-->
+        <div class="dowJones"></div>
+        <div class="nasdaq"></div>
+        <div class="sp"></div>
+        <div class="cac"></div>
+    </div>
+    <br><br><br>
+    
     
     <!--Firebase CDN-->
     <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
@@ -27,6 +120,26 @@
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.js"></script>
     <script src="Javascript/main.js"></script>
-</body>
+    </body>
+    
+    </html>
+    
+      <div>
+       
+        </div>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+      <!-- Firebase References -->
+      <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    
+           
+    <script src="./TatumProject1JS.js"></script>
+    
+       </body>
+    
+
 
 </html>
