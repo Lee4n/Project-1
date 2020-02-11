@@ -13,7 +13,9 @@ var firebaseConfig = {
 
   var database = firebase.database();
 
-  $(".submit").on("click", function(){ 
+  $(".submit").on("click", function(event){
+    
+    event.preventDefault();
 
     var ccaKey = "20250d43dabf3feedeba";
     var from = $(".from").val();
@@ -33,14 +35,18 @@ var firebaseConfig = {
       console.log("-------------------------------");
       console.log(response);
   
-      var test = Object.keys(response)[0];
+      var test = Object.values(response)[0];
       var newRate = amount * test;
-  
-      console.log(test);
+
+      console.log(test)
+
+      console.log(to)
       console.log(newRate)
   
-      $(".newCountry").append(to);
-      $(".newAmount").append(newRate);
+      $(".newCountry").append(" ", to);
+      $(".newAmount").append(" ", newRate);
+
+      reset()
       
     });
   
@@ -86,5 +92,11 @@ var firebaseConfig = {
     $(".cac").append(" ", response.majorIndexesList[3].price);
   });
   
+ // Reset Form //
+ // ============================================= //  
 
-  
+    function reset() {
+      $(".from").val(" ");
+      $(".to").val(" ");
+      $(".amount").val(" ");
+    }
