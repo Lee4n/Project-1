@@ -36,13 +36,13 @@ var firebaseConfig = {
       console.log(response);
   
       var test = Object.values(response)[0];
-      var newRate = amount * test;
+      var newRate = Math.round(amount * test);
 
       console.log(test)
 
       console.log(to)
       console.log(newRate)
-  
+
       $(".newCountry").append(" ", to);
       $(".newAmount").append(" ", newRate);
 
@@ -64,6 +64,11 @@ var firebaseConfig = {
     console.log("Currency Converter Country List");
     console.log("-------------------------------");
     console.log(response);
+    console.log(response.results.USD.currencySymbol)
+    console.log(Object.values(response.results));
+
+    var symbol = Object.values(response.results);
+    
   });
   
   // Financial Modeling Prep API //
