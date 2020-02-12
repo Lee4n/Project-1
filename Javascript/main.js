@@ -12,21 +12,69 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 var database = firebase.database();
+var currencyArray;
+var resultContainer = $("<div class='outputField'>");
+var resultSymbol = $("<div class='newSymbol'>");
+var resultAmount = $("<div class='newAmount'>");
+var resultCountry = $("<div class='newCountry'>");
+var selectedSymbol;
+var symbols = [];
+
+getData();
+
+function getData() {
+
+  // Currency Converter Country List //
+  // ============================================= //
+
+  $.ajax({
+    url: "https://free.currconv.com/api/v7/currencies?apiKey=60e32d887b397ac6240b",
+    method: "GET"
+  }).then(function (response) {
+    currencyArray = Object.values(response.results);
+    currencyArray.map(ca => symbols.push(ca.id))
+    console.log(symbols)
+    populateSymbol()
+  });
+};
+
+function setSymbol() {
+  var to = $("#to").val();
+
+  for (var i = 0; i < currencyArray.length; i++) {
+
+    if (to === currencyArray[i].id) {
+      selectedSymbol = currencyArray[i].currencySymbol;
+      resultSymbol.append(selectedSymbol);
+    }
+  }
+
+};
+
+function populateSymbol() {
+  console.log(symbols)
+  var options = symbols.map(s => `<option value="${s}">${s}</option>`)
+  $(".dropdown").append(options);
+};
+
+function empty() {
+  resultSymbol.empty()
+  resultAmount.empty()
+  resultCountry.empty()
+  resultContainer.empty()
+}
 
 $(".submit").on("click", function (event) {
-
   event.preventDefault();
 
+  empty();
+
   var main = $("#resultsArea")
-  var resultContainer = $("<div class='outputField'>");
-  var resultSymbol = $("<div class='newSymbol'>");
-  var resultAmount = $("<div class='newAmount'>");
-  var resultCountry = $("<div class='newCountry'>");
 
   var ccaKey = "60e32d887b397ac6240b";
-  var from = $(".from").val();
-  var to = $(".to").val();
-  var amount = $(".amount").val()
+  var from = $("#from").val();
+  var to = $("#to").val();
+  var amount = $("#amount").val()
 
   // console.log(from)
   // console.log(to)
@@ -55,37 +103,7 @@ $(".submit").on("click", function (event) {
 
   });
 
-  // Currency Converter Country List //
-  // ============================================= //
-
-  $.ajax({
-    url: "https://free.currconv.com/api/v7/currencies?apiKey=60e32d887b397ac6240b",
-    method: "GET"
-  }).then(function (response) {
-    // console.log(" ");
-    // console.log("-------------------------------");
-    // console.log("Currency Converter Country List");
-    // console.log("-------------------------------");
-    // console.log(response);
-    // console.log(response.results.USD.currencySymbol)
-    // console.log(Object.values(response.results));
-
-    var objectToArray = Object.values(response.results);
-    var to = $(".to").val();
-
-    for (var i = 0; i < objectToArray.length; i++) {
-
-      var symbol = objectToArray[i].currencySymbol;
-
-      if (to === objectToArray[i].id) {
-        database.ref().push({
-          symbol: symbol
-        })
-        resultSymbol.append(symbol);
-      }
-    }
-
-  });
+  setSymbol();
 
   resultContainer.append(amount + " " + from + " = ")
   resultContainer.append(resultSymbol);
@@ -96,9 +114,17 @@ $(".submit").on("click", function (event) {
   main.css('font-size', '30px')
   database.ref().push({
     amount: amount,
-    to: to
+    to: to,
+    symbol: selectedSymbol
   });
 
+});
+
+// Firebase pull 
+
+database.ref().on("child_added", function(childSnapshot) {
+  var fbDump = $("#fireArea")
+  fbDump.append("<p>" + childSnapshot.val().symbol + childSnapshot.val().amount + " " + childSnapshot.val().to + "</p>")
 });
 
 // Financial Modeling Prep API //
@@ -164,7 +190,7 @@ $.ajax({
 // ============================================= //  
 
 function reset() {
-  $(".from").val(" ");
-  $(".to").val(" ");
-  $(".amount").val(" ");
+  $("#from").val(" ");
+  $("#to").val(" ");
+  $("#amount").val(" ");
 }
