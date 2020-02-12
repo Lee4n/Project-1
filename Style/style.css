@@ -1,16 +1,25 @@
 header {
-  height: 100px;
+  height: 50px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   display: flex;
   justify-content: center;
   align-content: center;
-  background: rgba(0, 0, 0, 0.5); 
+  background: rgba(0, 0, 0, 0.6); 
   color: white;
 }
 
-h2 {
-  padding-top: 4%;
-  width: 100%;
+.input-wrapper {
+  width: 90%;
+  margin: auto;
+}
+
+.tickerData {
+  margin-top: 10px;
+  font-size: 22px;
+}
+
+.stockEnd {
+  margin-right: 50px;
 }
 
 span {
@@ -23,16 +32,18 @@ body {
   font-style: italic;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, "sans-serif";
   text-emphasis-color: black;
-  image-rendering: auto;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-image: linear-gradient(90deg, rgb(30, 144, 200) , rgb(114, 133, 143));
 }
 
 form {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   border-radius: 5px;
-  padding: 35px;
-  margin-top: 5%;
+  padding: 15px;
+}
+
+.form-input {
+  color: white;
+  font-size: 21px !important;
 }
 
 input[type=text],
@@ -47,7 +58,7 @@ select {
 
 input[type=submit] {
   width: 200px;
-  background-color: red;
+  background-color: rgb(30, 144, 200);
   color: whitesmoke;
   padding: 14px 20px;
   margin: 8px 0;
@@ -57,19 +68,19 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-  background-color: limegreen;
+  background-color: rgb(30, 144, 255);
 }
 
 .outputField {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   color: white;
   border-radius: 5px;
   padding: 15px;
   width: 100%;
-  margin-left: 14px;
-  margin-right: 14px;
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
 .newSymbol {
@@ -78,9 +89,16 @@ input[type=submit]:hover {
 
 .newAmount {
   margin: 0px 3.5px 0px 0px;
+  color: rgb(43, 241, 3);
 }
 
 .from {
   width: 50%;
   float: left;
+}
+
+.greeting {
+  margin: 8px;
+  padding: 16px;
+  color: white;
 }

@@ -26,37 +26,41 @@
 
 </head>
 
-<body style="background-image: url(Images/airport.jpg);">
+<body>
 
   <header>
-    <h2>
-      <marquee>
-        <span class="dowJones"></span>
-        <span class="dowJones2"></span>
-        <span class="dowJones3"></span>
-        <span class="nasdaq"></span>
-        <span class="nasdaq2"></span>
-        <span class="nasdaq3"></span>
-        <span class="sp"></span>
-        <span class="sp2"></span>
-        <span class="sp3"></span>
-        <span class="cac"></span>
-        <span class="cac2"></span>
-        <span class="cac3"></span>
-      </marquee>
-    </h2>
+    <marquee class="tickerData">
+      <span class="dowJones"></span>
+      <span class="dowJones2"></span>
+      <span class="dowJones3 stockEnd"></span>
+      <span class="nasdaq"></span>
+      <span class="nasdaq2"></span>
+      <span class="nasdaq3 stockEnd"></span>
+      <span class="sp"></span>
+      <span class="sp2"></span>
+      <span class="sp3 stockEnd"></span>
+      <span class="cac"></span>
+      <span class="cac2"></span>
+      <span class="cac3 stockEnd"></span>
+    </marquee>
   </header>
 
   <div class="container">
 
-    <form>
-      <input type="text" id="amount" class="amount" placeholder="Enter an amount..." required>
-      <br><br>
-      <input type="text" id="from" class="from" placeholder="Enter a currency type to convert from..." required>
-      <br><br><br>
-      <input type="text" id="to" class="to" placeholder="Enter a currency type to convert to..." required>
-      <br><br><br>
-      <input type="submit" value="CONVERT" class="submit">
+    <h1 class="greeting">Welcome to our Currency Converter. <br> Please fill out the form below to get started!</h1>
+
+    <form autocomplete="off">
+
+      <div class="input-wrapper">
+        <input type="text" id="amount" class="amount form-input" placeholder="Enter an amount..." required>
+        <br><br>
+        <input type="text" id="from" class="from form-input" placeholder="Enter a currency type to convert from..." required>
+        <br><br><br>
+        <input type="text" id="to" class="to form-input" placeholder="Enter a currency type to convert to..." required>
+        <br><br><br>
+        <input type="submit" value="CONVERT" class="submit">
+      </div>
+
     </form>
 
     <br><br>

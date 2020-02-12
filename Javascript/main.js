@@ -12,16 +12,48 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 var database = firebase.database();
+var currencyArray;
+var resultContainer = $("<div class='outputField'>");
+var resultSymbol = $("<div class='newSymbol'>");
+var resultAmount = $("<div class='newAmount'>");
+var resultCountry = $("<div class='newCountry'>");
+var symbol;
+
+getData();
+
+function getData() {
+
+  // Currency Converter Country List //
+  // ============================================= //
+
+  $.ajax({
+    url: "https://free.currconv.com/api/v7/currencies?apiKey=60e32d887b397ac6240b",
+    method: "GET"
+  }).then(function (response) {
+
+    currencyArray = Object.values(response.results);
+
+  });
+};
+
+function setSymbol() {
+  var to = $(".to").val();
+
+  for (var i = 0; i < currencyArray.length; i++) {
+
+    if (to === currencyArray[i].id) {
+      symbol = currencyArray[i].currencySymbol;
+      resultSymbol.append(symbol);
+    }
+  }
+
+};
 
 $(".submit").on("click", function (event) {
 
   event.preventDefault();
 
   var main = $("#resultsArea")
-  var resultContainer = $("<div class='outputField'>");
-  var resultSymbol = $("<div class='newSymbol'>");
-  var resultAmount = $("<div class='newAmount'>");
-  var resultCountry = $("<div class='newCountry'>");
 
   var ccaKey = "60e32d887b397ac6240b";
   var from = $(".from").val();
@@ -55,37 +87,7 @@ $(".submit").on("click", function (event) {
 
   });
 
-  // Currency Converter Country List //
-  // ============================================= //
-
-  $.ajax({
-    url: "https://free.currconv.com/api/v7/currencies?apiKey=60e32d887b397ac6240b",
-    method: "GET"
-  }).then(function (response) {
-    // console.log(" ");
-    // console.log("-------------------------------");
-    // console.log("Currency Converter Country List");
-    // console.log("-------------------------------");
-    // console.log(response);
-    // console.log(response.results.USD.currencySymbol)
-    // console.log(Object.values(response.results));
-
-    var objectToArray = Object.values(response.results);
-    var to = $(".to").val();
-
-    for (var i = 0; i < objectToArray.length; i++) {
-
-      var symbol = objectToArray[i].currencySymbol;
-
-      if (to === objectToArray[i].id) {
-        database.ref().push({
-          symbol: symbol
-        })
-        resultSymbol.append(symbol);
-      }
-    }
-
-  });
+  setSymbol();
 
   resultContainer.append(amount + " " + from + " = ")
   resultContainer.append(resultSymbol);
@@ -96,7 +98,8 @@ $(".submit").on("click", function (event) {
   main.css('font-size', '30px')
   database.ref().push({
     amount: amount,
-    to: to
+    to: to,
+    symbol: symbol
   });
 
 });
