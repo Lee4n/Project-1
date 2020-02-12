@@ -1,52 +1,46 @@
-header{
-    border: 5px solid black; 
-    height: 150px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    color: white;
-  
-  }
+header {
+  height: 150px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  color: white;
+
+}
 
 h2 {
   padding-top: 4%;
 }
- 
- span{
-   margin-left: 10px;
- }
- 
- .form {
-   margin-top: 5%;
-   opacity: 0.9;
- }
- 
- 
- body{ 
-        text-align: center; 
-        font-size:large;
-        font-style: italic;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, "sans-serif"; 
-        text-emphasis-color: black;
-        image-rendering:auto;
-        background-size: cover;
-        background-repeat: no-repeat;
- }
+
+span {
+  margin-left: 10px;
+}
+
+body {
+  text-align: center;
+  font-size: large;
+  font-style: italic;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, "sans-serif";
+  text-emphasis-color: black;
+  image-rendering: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
 
-form{
-    background-color: rgb(167, 148, 148);
-    
-        border-radius: 5px;
-        padding: 35px;
-      }
+form {
+  border-radius: 5px;
+  padding: 35px;
+  margin-top: 5%;
+  opacity: 0.9;
+}
 
 
 
 
 
-input[type=text], select {
+input[type=text],
+select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -57,7 +51,7 @@ input[type=text], select {
 }
 
 input[type=submit] {
-  width: 100%;
+  width: 25%;
   background-color: red;
   color: whitesmoke;
   padding: 14px 20px;
@@ -75,23 +69,28 @@ input[type=submit]:hover {
   display: flex;
   justify-content: center;
   align-content: center;
-
-  background-color: gray;
   color: white;
-
   border-radius: 5px;
   padding: 15px;
   width: 95%;
   margin-left: 13.5px;
-
 }
 
 .newSymbol {
   margin-left: 3.5px;
+  color: green;
 }
 
 .newAmount {
   margin: 0px 3.5px 0px 0px;
+  color: green;
 }
 
+.newCountry {
+  color: green;
+}
 
+.from {
+  width: 50%;
+  float: left;
+}
