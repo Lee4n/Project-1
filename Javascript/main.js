@@ -120,6 +120,13 @@ $(".submit").on("click", function (event) {
 
 });
 
+// Firebase pull 
+
+database.ref().on("child_added", function(childSnapshot) {
+  var fbDump = $("#fireArea")
+  fbDump.append("<p>" + childSnapshot.val().symbol + childSnapshot.val().amount + " " + childSnapshot.val().to + "</p>")
+});
+
 // Financial Modeling Prep API //
 // ============================================= //  
 

@@ -4,13 +4,14 @@ header {
   display: flex;
   justify-content: center;
   align-content: center;
-  background: rgba(0, 0, 0, 0.6); 
+  background: rgba(0, 0, 0, 0.6);
   color: white;
 }
 
 .input-wrapper {
   width: 90%;
   margin: auto;
+  padding-top: 5%;
 }
 
 .tickerData {
@@ -32,7 +33,7 @@ body {
   font-style: italic;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, "sans-serif";
   text-emphasis-color: black;
-  background-image: linear-gradient(90deg, rgb(30, 144, 200) , rgb(114, 133, 143));
+  background-image: linear-gradient(90deg, rgb(30, 144, 200), rgb(114, 133, 143));
 }
 
 form {
@@ -128,8 +129,20 @@ input[type=submit]:hover {
 }
 
 select option {
-    margin: 40px;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  margin: 40px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.fireArea {
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  color: white;
+  border-radius: 5px;
+  padding: 15px;
+  width: 100%;
+  margin-left: 2px;
+  margin-right: 16px;
 }
