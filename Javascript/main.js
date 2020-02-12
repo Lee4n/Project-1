@@ -23,7 +23,7 @@ $(".submit").on("click", function (event) {
   var resultAmount = $("<div class='newAmount'>");
   var resultCountry = $("<div class='newCountry'>");
 
-  var ccaKey = "20250d43dabf3feedeba";
+  var ccaKey = "60e32d887b397ac6240b";
   var from = $(".from").val();
   var to = $(".to").val();
   var amount = $(".amount").val()
@@ -59,7 +59,7 @@ $(".submit").on("click", function (event) {
   // ============================================= //
 
   $.ajax({
-    url: "https://free.currconv.com/api/v7/currencies?apiKey=20250d43dabf3feedeba",
+    url: "https://free.currconv.com/api/v7/currencies?apiKey=60e32d887b397ac6240b",
     method: "GET"
   }).then(function (response) {
     // console.log(" ");
@@ -74,12 +74,9 @@ $(".submit").on("click", function (event) {
     var to = $(".to").val();
 
     for (var i = 0; i < objectToArray.length; i++) {
-      var symbol = objectToArray[i].currencySymbol;
-      var countryListId = objectToArray[i].id;
-      console.log(Object.values(objectToArray[i]));
 
-      // console.log(objectToArray[i].id);
-      // console.log(to)
+      var symbol = objectToArray[i].currencySymbol;
+
       if (to === objectToArray[i].id) {
         database.ref().push({
           symbol: symbol

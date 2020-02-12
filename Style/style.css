@@ -1,15 +1,15 @@
 header {
-  height: 150px;
+  height: 100px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   display: flex;
   justify-content: center;
   align-content: center;
   color: white;
-
 }
 
 h2 {
   padding-top: 4%;
+  width: 100%;
 }
 
 span {
@@ -27,7 +27,6 @@ body {
   background-repeat: no-repeat;
 }
 
-
 form {
   border-radius: 5px;
   padding: 35px;
@@ -35,13 +34,8 @@ form {
   opacity: 0.9;
 }
 
-
-
-
-
 input[type=text],
 select {
-  width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -51,7 +45,7 @@ select {
 }
 
 input[type=submit] {
-  width: 25%;
+  width: 200px;
   background-color: red;
   color: whitesmoke;
   padding: 14px 20px;
@@ -78,16 +72,10 @@ input[type=submit]:hover {
 
 .newSymbol {
   margin-left: 3.5px;
-  color: green;
 }
 
 .newAmount {
   margin: 0px 3.5px 0px 0px;
-  color: green;
-}
-
-.newCountry {
-  color: green;
 }
 
 .from {
