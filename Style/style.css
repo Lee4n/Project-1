@@ -1,3 +1,6 @@
+/* TAGS */
+/* =============================== */
+
 header {
   height: 50px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -6,21 +9,6 @@ header {
   align-content: center;
   background: rgba(0, 0, 0, 0.6);
   color: white;
-}
-
-.input-wrapper {
-  width: 90%;
-  margin: auto;
-  padding-top: 5%;
-}
-
-.tickerData {
-  margin-top: 10px;
-  font-size: 22px;
-}
-
-.stockEnd {
-  margin-right: 50px;
 }
 
 span {
@@ -40,11 +28,6 @@ form {
   background: rgba(0, 0, 0, 0.6);
   border-radius: 5px;
   padding: 15px;
-}
-
-.form-input {
-  color: white;
-  font-size: 21px !important;
 }
 
 input[type=text],
@@ -70,6 +53,39 @@ input[type=submit] {
 
 input[type=submit]:hover {
   background-color: rgb(30, 144, 255);
+}
+
+select option {
+  margin: 40px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* IDS */
+/* =============================== */
+
+/* CLASSES */
+/* =============================== */
+
+.input-wrapper {
+  width: 90%;
+  margin: auto;
+  padding-top: 5%;
+}
+
+.tickerData {
+  margin-top: 10px;
+  font-size: 22px;
+}
+
+.stockEnd {
+  margin-right: 50px;
+}
+
+.form-input {
+  color: white;
+  font-size: 21px !important;
 }
 
 .outputField {
@@ -126,13 +142,6 @@ input[type=submit]:hover {
   font-size: 21px;
   margin-left: 0;
   padding-left: 0;
-}
-
-select option {
-  margin: 40px;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
 
 .fireArea {

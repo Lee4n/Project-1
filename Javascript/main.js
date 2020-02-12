@@ -1,196 +1,210 @@
-// Your web app's Firebase configuration
-var firebaseConfig = {
-  apiKey: "AIzaSyCMCtFDFzlzJh6qrWFZ_pqFJ-ELhweBNkY",
-  authDomain: "project-1-608e1.firebaseapp.com",
-  databaseURL: "https://project-1-608e1.firebaseio.com",
-  projectId: "project-1-608e1",
-  storageBucket: "project-1-608e1.appspot.com",
-  messagingSenderId: "510274083998",
-  appId: "1:510274083998:web:422fb226e2251b2f22ef8f"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+// Firebase //
+// ============================================= //
 
-var database = firebase.database();
-var currencyArray;
-var resultContainer = $("<div class='outputField'>");
-var resultSymbol = $("<div class='newSymbol'>");
-var resultAmount = $("<div class='newAmount'>");
-var resultCountry = $("<div class='newCountry'>");
-var selectedSymbol;
-var symbols = [];
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCMCtFDFzlzJh6qrWFZ_pqFJ-ELhweBNkY",
+    authDomain: "project-1-608e1.firebaseapp.com",
+    databaseURL: "https://project-1-608e1.firebaseio.com",
+    projectId: "project-1-608e1",
+    storageBucket: "project-1-608e1.appspot.com",
+    messagingSenderId: "510274083998",
+    appId: "1:510274083998:web:422fb226e2251b2f22ef8f"
+  };
 
-getData();
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
 
-function getData() {
+// Global Variables //
+// ============================================= //
 
-  // Currency Converter Country List //
+  var database = firebase.database();
+  var currencyArray;
+  var resultContainer = $("<div class='outputField'>");
+  var resultSymbol = $("<div class='newSymbol'>");
+  var resultAmount = $("<div class='newAmount'>");
+  var resultCountry = $("<div class='newCountry'>");
+  var selectedSymbol;
+  var symbols = [];
+
+// Necessary Calls //
+// ============================================= //
+
+  getData();
+
+// Functions //
+// ============================================= //  
+
+  // API Call for Country Codes //
   // ============================================= //
 
-  $.ajax({
-    url: "https://free.currconv.com/api/v7/currencies?apiKey=60e32d887b397ac6240b",
-    method: "GET"
-  }).then(function (response) {
-    currencyArray = Object.values(response.results);
-    currencyArray.map(ca => symbols.push(ca.id))
-    console.log(symbols)
-    populateSymbol()
-  });
-};
+    function getData() {
+      $.ajax({
+        url: "https://free.currconv.com/api/v7/currencies?apiKey=60e32d887b397ac6240b",
+        method: "GET"
+      }).then(function (response) {
+        currencyArray = Object.values(response.results);
+        currencyArray.map(ca => symbols.push(ca.id))
+        populateSymbol()
+      });
+    };
 
-function setSymbol() {
-  var to = $("#to").val();
+  // Placing Currency Symbols //
+  // ============================================= //
+    
+    function setSymbol() {
+      var to = $("#to").val();
 
-  for (var i = 0; i < currencyArray.length; i++) {
+      for (var i = 0; i < currencyArray.length; i++) {
 
-    if (to === currencyArray[i].id) {
-      selectedSymbol = currencyArray[i].currencySymbol;
-      resultSymbol.append(selectedSymbol);
+        if (to === currencyArray[i].id) {
+          selectedSymbol = currencyArray[i].currencySymbol;
+          resultSymbol.append(selectedSymbol);
+        }
+      }
+
+    };
+
+    function populateSymbol() {
+      var options = symbols.map(s => `<option value="${s}">${s}</option>`)
+      $(".dropdown").append(options);
+    };
+
+  // Result Form Reset //
+  // ============================================= //
+
+    function empty() {
+      resultSymbol.empty()
+      resultAmount.empty()
+      resultCountry.empty()
+      resultContainer.empty()
     }
-  }
 
-};
+  // Submit Button Event //
+  // ============================================= //
+    
+    $(".submit").on("click", function (event) {
+      event.preventDefault();
 
-function populateSymbol() {
-  console.log(symbols)
-  var options = symbols.map(s => `<option value="${s}">${s}</option>`)
-  $(".dropdown").append(options);
-};
+      empty();
 
-function empty() {
-  resultSymbol.empty()
-  resultAmount.empty()
-  resultCountry.empty()
-  resultContainer.empty()
-}
+      var main = $("#resultsArea")
 
-$(".submit").on("click", function (event) {
-  event.preventDefault();
+      var ccaKey = "60e32d887b397ac6240b";
+      var from = $("#from").val();
+      var to = $("#to").val();
+      var amount = $("#amount").val()
 
-  empty();
+      $.ajax({
+        url: "https://free.currconv.com/api/v7/convert?q=" + from + "_" + to + "&compact=ultra&apiKey=" + ccaKey,
+        method: "GET"
+      }).then(function (response) {
+        console.log(response)
 
-  var main = $("#resultsArea")
+        var test = Object.values(response)[0];
+        var newRate = (amount * test).toFixed(2);
 
-  var ccaKey = "60e32d887b397ac6240b";
-  var from = $("#from").val();
-  var to = $("#to").val();
-  var amount = $("#amount").val()
+        resultCountry.append(" ", to);
+        resultAmount.append(" ", newRate);
 
-  // console.log(from)
-  // console.log(to)
+        // Firebase Storage //
+        // ============================================= // 
+        database.ref().push({
+          amount: newRate,
+          to: to,
+          symbol: selectedSymbol
+        });
 
-  $.ajax({
-    url: "https://free.currconv.com/api/v7/convert?q=" + from + "_" + to + "&compact=ultra&apiKey=" + ccaKey,
-    method: "GET"
-  }).then(function (response) {
-    // console.log(" ");
-    // console.log("-------------------------------");
-    // console.log("Currency Converter API");
-    // console.log("-------------------------------");
-    // console.log(response);
+      });
 
-    var test = Object.values(response)[0];
-    var newRate = (amount * test).toFixed(2);
+      setSymbol();
 
+      resultContainer.append(amount + " " + from + " = ")
+      resultContainer.append(resultSymbol);
+      resultContainer.append(resultAmount);
+      resultContainer.append(resultCountry);
 
-    // console.log(test)
+      main.append(resultContainer)
+      main.css('font-size', '30px')
 
-    // console.log(to)
-    // console.log(newRate)
+      reset();
 
-    resultCountry.append(" ", to);
-    resultAmount.append(" ", newRate);
+    });
 
-  });
+  // Firebase pull 
+  // ============================================= // 
 
-  setSymbol();
+    database.ref().on("child_added", function(childSnapshot) {
+      var fbDump = $("#fireArea")
+      fbDump.append("<p>" + childSnapshot.val().symbol + childSnapshot.val().amount + " " + childSnapshot.val().to + "</p>")
+    });
 
-  resultContainer.append(amount + " " + from + " = ")
-  resultContainer.append(resultSymbol);
-  resultContainer.append(resultAmount);
-  resultContainer.append(resultCountry);
+  // Financial Modeling Prep API //
+  // ============================================= //  
 
-  main.append(resultContainer)
-  main.css('font-size', '30px')
-  database.ref().push({
-    amount: amount,
-    to: to,
-    symbol: selectedSymbol
-  });
+    $.ajax({
+      url: "https://financialmodelingprep.com/api/v3/majors-indexes",
+      method: "GET"
+    }).then(function (response) {
 
-});
+      // Dow Jones //
+      // ============================================= // 
+      $(".dowJones").append(" ", response.majorIndexesList[0].indexName);
+      $(".dowJones2").append(" ", response.majorIndexesList[0].price);
+      $(".dowJones2").css('color', '#1E90FF');
+      if (response.majorIndexesList[0].changes < 0) {
+        $(".dowJones3").append(" ", response.majorIndexesList[0].changes);
+        $(".dowJones3").css('color', '#FF0000');
+      } else if (response.majorIndexesList[0].changes > 0) {
+        $(".dowJones3").append(" ", response.majorIndexesList[0].changes);
+        $(".dowJones3").css('color', '#32CD32');
+      }
 
-// Firebase pull 
+      // Nasdaq //
+      // ============================================= // 
+      $(".nasdaq").append(" ", response.majorIndexesList[1].indexName);
+      $(".nasdaq2").append(" ", response.majorIndexesList[1].price);
+      $(".nasdaq2").css('color', '#1E90FF');
+      if (response.majorIndexesList[1].changes < 0) {
+        $(".nasdaq3").append(" ", response.majorIndexesList[1].changes);
+        $(".nasdaq3").css('color', '#FF0000');
+      } else if (response.majorIndexesList[1].changes > 0) {
+        $(".nasdaq3").append(" ", response.majorIndexesList[1].changes);
+        $(".nasdaq3").css('color', '#32CD32');
+      }
 
-database.ref().on("child_added", function(childSnapshot) {
-  var fbDump = $("#fireArea")
-  fbDump.append("<p>" + childSnapshot.val().symbol + childSnapshot.val().amount + " " + childSnapshot.val().to + "</p>")
-});
+      // S&P //
+      // ============================================= // 
+      $(".sp").append(" ", response.majorIndexesList[2].indexName);
+      $(".sp2").append(" ", response.majorIndexesList[2].price);
+      $(".sp2").css('color', '#1E90FF');
+      if (response.majorIndexesList[2].changes < 0) {
+        $(".sp3").append(" ", response.majorIndexesList[2].changes);
+        $(".sp3").css('color', '#FF0000');
+      } else if (response.majorIndexesList[2].changes > 0) {
+        $(".sp3").append(" ", response.majorIndexesList[2].changes);
+        $(".sp3").css('color', '#32CD32');
+      }
 
-// Financial Modeling Prep API //
-// ============================================= //  
+      // CAC //
+      // ============================================= // 
+      $(".cac").append(" ", response.majorIndexesList[3].indexName);
+      $(".cac2").append(" ", response.majorIndexesList[3].price);
+      $(".cac2").css('color', '#1E90FF');
+      if (response.majorIndexesList[3].changes < 0) {
+        $(".cac3").append(" ", response.majorIndexesList[3].changes);
+        $(".cac3").css('color', '#FF0000');
+      } else if (response.majorIndexesList[3].changes > 0) {
+        $(".cac3").append(" ", response.majorIndexesList[3].changes);
+        $(".cac3").css('color', '#32CD32');
+      }
+    });
 
-$.ajax({
-  url: "https://financialmodelingprep.com/api/v3/majors-indexes",
-  method: "GET"
-}).then(function (response) {
-  // console.log(" ");
-  // console.log("-------------------------------");
-  // console.log("Financial Modeling Prep");
-  // console.log("-------------------------------");
-  // console.log(response);
+  // Reset Form //
+  // ============================================= //  
 
-  $(".dowJones").append(" ", response.majorIndexesList[0].indexName);
-  $(".dowJones2").append(" ", response.majorIndexesList[0].price);
-  $(".dowJones2").css('color', '#1E90FF');
-  if (response.majorIndexesList[0].changes < 0) {
-    $(".dowJones3").append(" ", response.majorIndexesList[0].changes);
-    $(".dowJones3").css('color', '#FF0000');
-  } else if (response.majorIndexesList[0].changes > 0) {
-    $(".dowJones3").append(" ", response.majorIndexesList[0].changes);
-    $(".dowJones3").css('color', '#32CD32');
-  }
-
-
-  $(".nasdaq").append(" ", response.majorIndexesList[1].indexName);
-  $(".nasdaq2").append(" ", response.majorIndexesList[1].price);
-  $(".nasdaq2").css('color', '#1E90FF');
-  if (response.majorIndexesList[1].changes < 0) {
-    $(".nasdaq3").append(" ", response.majorIndexesList[1].changes);
-    $(".nasdaq3").css('color', '#FF0000');
-  } else if (response.majorIndexesList[1].changes > 0) {
-    $(".nasdaq3").append(" ", response.majorIndexesList[1].changes);
-    $(".nasdaq3").css('color', '#32CD32');
-  }
-
-  $(".sp").append(" ", response.majorIndexesList[2].indexName);
-  $(".sp2").append(" ", response.majorIndexesList[2].price);
-  $(".sp2").css('color', '#1E90FF');
-  if (response.majorIndexesList[2].changes < 0) {
-    $(".sp3").append(" ", response.majorIndexesList[2].changes);
-    $(".sp3").css('color', '#FF0000');
-  } else if (response.majorIndexesList[2].changes > 0) {
-    $(".sp3").append(" ", response.majorIndexesList[2].changes);
-    $(".sp3").css('color', '#32CD32');
-  }
-
-  $(".cac").append(" ", response.majorIndexesList[3].indexName);
-  $(".cac2").append(" ", response.majorIndexesList[3].price);
-  $(".cac2").css('color', '#1E90FF');
-  if (response.majorIndexesList[3].changes < 0) {
-    $(".cac3").append(" ", response.majorIndexesList[3].changes);
-    $(".cac3").css('color', '#FF0000');
-  } else if (response.majorIndexesList[3].changes > 0) {
-    $(".cac3").append(" ", response.majorIndexesList[3].changes);
-    $(".cac3").css('color', '#32CD32');
-  }
-});
-
-// Reset Form //
-// ============================================= //  
-
-function reset() {
-  $("#from").val(" ");
-  $("#to").val(" ");
-  $("#amount").val(" ");
-}
+    function reset() {
+      $("#from").val(" ");
+      $("#to").val(" ");
+      $("#amount").val(" ");
+    }

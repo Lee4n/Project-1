@@ -1,33 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
 
 <head>
-  <!--Reset CSS-->
+
+  <!-- CSS Reset -->
+  <!-- ==================================== -->
   <link rel="stylesheet" href="Style/reset.css">
 
+  <!-- Meta Tags -->
+  <!-- ==================================== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <!-- Compiled and minified Materialize CSS -->
+  <!-- ==================================== -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
   <!-- Bootstrap CDN -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!-- ==================================== -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
   <!-- Our Stylesheet -->
+  <!-- ==================================== -->
   <link rel="stylesheet" href="Style/style.css">
 
+  <!-- Page Title -->
+  <!-- ==================================== -->
   <title>Currency Exchange Rate Converter</title>
 
   <!-- JQuery CDN -->
+  <!-- ==================================== -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 
 <body>
 
+  <!-- Scrolling Marquee -->
+  <!-- ==================================== -->
   <header>
     <marquee class="tickerData">
       <span class="dowJones"></span>
@@ -45,10 +56,16 @@
     </marquee>
   </header>
 
+  <!-- Bootstrap/Materialize Container -->
+  <!-- ==================================== -->
   <div class="container">
 
+    <!-- Page Greeting/Instructions -->
+    <!-- ==================================== -->
     <h1 class="greeting">Welcome to our Currency Converter. <br> Please fill out the form below to get started!</h1>
 
+    <!-- User Input Form -->
+    <!-- ==================================== -->
     <form autocomplete="off">
 
       <div class="input-wrapper">
@@ -80,12 +97,15 @@
 
     <br><br>
 
-    <!-- Output Field -->
+    <!-- User Output Field -->
     <!-- ==================================== -->
     <div class="row" id="resultsArea">
 
     </div>
     <br><br>
+
+    <!-- Firebase Pull Area -->
+    <!-- ==================================== -->
     <div class="row fireArea">
       <div id="fireArea">
         <h2>Recently Converted</h2>
@@ -96,18 +116,22 @@
   </div>
 
   <!--Firebase CDN-->
+  <!-- ==================================== -->
   <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-database.js"></script>
 
   <!-- Compiled and minified Materialize JavaScript -->
+  <!-- ==================================== -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
   <!-- Boostrap JS CDNs -->
+  <!-- ==================================== -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
   </script>
 
   <!-- Our JS -->
+  <!-- ==================================== -->
   <script src="Javascript/main.js"></script>
 
 </body>
