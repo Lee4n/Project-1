@@ -26,12 +26,11 @@
 
 </head>
 
-<body style="background-image: url(Images/projbackground.jpg);">
-  <div class="container">
-  
+<body style="background-image: url(Images/airport.jpg);">
+
   <header>
     <h2>
-      <marquee> 
+      <marquee>
         <span class="dowJones"></span>
         <span class="dowJones2"></span>
         <span class="dowJones3"></span>
@@ -41,31 +40,31 @@
         <span class="sp"></span>
         <span class="sp2"></span>
         <span class="sp3"></span>
-        <span class="cac"></span> 
+        <span class="cac"></span>
         <span class="cac2"></span>
         <span class="cac3"></span>
       </marquee>
     </h2>
   </header>
-  
-    <form class="form">
-      <label for="amount"></label>
-      <input type="text" id="amount" name="amount" class="amount" placeholder="ENTER AMOUNT OF MONEY TO CONVERT HERE...." required>
 
-      <label for="from"></label>
-      <input type="text" id="from" name="from" class="from" placeholder="ENTER TYPE OF CURENCY TO CONVERT FROM:" required>
+  <div class="container">
 
-      <label for="to"></label>
-      <input type="text" id="to" name="to" class="to" placeholder="ENTER TYPE OF CURENCY TO CONVERT TO:" required>
-
-      <input type="submit" value="GET CONVERSION" class="submit">
+    <form>
+      <input type="text" id="amount" class="amount" placeholder="Enter an amount..." required>
+      <br><br>
+      <input type="text" id="from" class="from" placeholder="Enter a currency type to convert from..." required>
+      <br><br><br>
+      <input type="text" id="to" class="to" placeholder="Enter a currency type to convert to..." required>
+      <br><br><br>
+      <input type="submit" value="CONVERT" class="submit">
     </form>
+
     <br><br>
 
-     <!-- Output Field -->
+    <!-- Output Field -->
     <!-- ==================================== -->
     <div class="row" id="resultsArea">
-      
+
     </div>
     <br><br><br>
 
@@ -80,9 +79,8 @@
 
   <!-- Boostrap JS CDNs -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
-
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
 
   <!-- Our JS -->
   <script src="Javascript/main.js"></script>

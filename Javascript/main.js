@@ -23,31 +23,32 @@ $(".submit").on("click", function (event) {
   var resultAmount = $("<div class='newAmount'>");
   var resultCountry = $("<div class='newCountry'>");
 
-  var ccaKey = "20250d43dabf3feedeba";
+  var ccaKey = "60e32d887b397ac6240b";
   var from = $(".from").val();
   var to = $(".to").val();
   var amount = $(".amount").val()
 
-  console.log(from)
-  console.log(to)
+  // console.log(from)
+  // console.log(to)
 
   $.ajax({
     url: "https://free.currconv.com/api/v7/convert?q=" + from + "_" + to + "&compact=ultra&apiKey=" + ccaKey,
     method: "GET"
   }).then(function (response) {
-    console.log(" ");
-    console.log("-------------------------------");
-    console.log("Currency Converter API");
-    console.log("-------------------------------");
-    console.log(response);
+    // console.log(" ");
+    // console.log("-------------------------------");
+    // console.log("Currency Converter API");
+    // console.log("-------------------------------");
+    // console.log(response);
 
     var test = Object.values(response)[0];
-    var newRate = Math.round(amount * test);
+    var newRate = (amount * test).toFixed(2);
 
-    console.log(test)
 
-    console.log(to)
-    console.log(newRate)
+    // console.log(test)
+
+    // console.log(to)
+    // console.log(newRate)
 
     resultCountry.append(" ", to);
     resultAmount.append(" ", newRate);
@@ -58,24 +59,28 @@ $(".submit").on("click", function (event) {
   // ============================================= //
 
   $.ajax({
-    url: "https://free.currconv.com/api/v7/currencies?apiKey=20250d43dabf3feedeba",
+    url: "https://free.currconv.com/api/v7/currencies?apiKey=60e32d887b397ac6240b",
     method: "GET"
   }).then(function (response) {
-    console.log(" ");
-    console.log("-------------------------------");
-    console.log("Currency Converter Country List");
-    console.log("-------------------------------");
-    console.log(response);
-    console.log(response.results.USD.currencySymbol)
-    console.log(Object.values(response.results));
+    // console.log(" ");
+    // console.log("-------------------------------");
+    // console.log("Currency Converter Country List");
+    // console.log("-------------------------------");
+    // console.log(response);
+    // console.log(response.results.USD.currencySymbol)
+    // console.log(Object.values(response.results));
 
     var objectToArray = Object.values(response.results);
     var to = $(".to").val();
+
     for (var i = 0; i < objectToArray.length; i++) {
-      var symbol = objectToArray[i].currencySymbol
-      console.log(objectToArray[i].id);
-      console.log(to)
+
+      var symbol = objectToArray[i].currencySymbol;
+
       if (to === objectToArray[i].id) {
+        database.ref().push({
+          symbol: symbol
+        })
         resultSymbol.append(symbol);
       }
     }
@@ -89,7 +94,11 @@ $(".submit").on("click", function (event) {
 
   main.append(resultContainer)
   main.css('font-size', '30px')
-   
+  database.ref().push({
+    amount: amount,
+    to: to
+  });
+
 });
 
 // Financial Modeling Prep API //
@@ -99,11 +108,11 @@ $.ajax({
   url: "https://financialmodelingprep.com/api/v3/majors-indexes",
   method: "GET"
 }).then(function (response) {
-  console.log(" ");
-  console.log("-------------------------------");
-  console.log("Financial Modeling Prep");
-  console.log("-------------------------------");
-  console.log(response);
+  // console.log(" ");
+  // console.log("-------------------------------");
+  // console.log("Financial Modeling Prep");
+  // console.log("-------------------------------");
+  // console.log(response);
 
   $(".dowJones").append(" ", response.majorIndexesList[0].indexName);
   $(".dowJones2").append(" ", response.majorIndexesList[0].price);
@@ -115,7 +124,7 @@ $.ajax({
     $(".dowJones3").append(" ", response.majorIndexesList[0].changes);
     $(".dowJones3").css('color', '#32CD32');
   }
-  
+
 
   $(".nasdaq").append(" ", response.majorIndexesList[1].indexName);
   $(".nasdaq2").append(" ", response.majorIndexesList[1].price);
