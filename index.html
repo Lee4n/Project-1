@@ -52,11 +52,26 @@
     <form autocomplete="off">
 
       <div class="input-wrapper">
-        <input type="text" id="amount" class="amount form-input" placeholder="Enter an amount..." required>
-        <br><br>
-        <input type="text" id="from" class="from form-input" placeholder="Enter a currency type to convert from..." required>
+
+        <div class="form-group">
+          <input type="text" id="amount" class="amount form-input" placeholder="Enter an amount..." required>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-5">
+            <select class="form-control dropdown" id="from">
+              <option>none</option>
+            </select>
+          </div>
+          <label style="font-size: 22px; margin-top: 5px;" class="col-md-2">To</label>
+          <div class="form-group col-md-5">
+            <select class="form-control dropdown" id="to">
+              <option>none</option>
+            </select>
+          </div>
+        </div>
+        <!-- <input type="text" id="from" class="from form-input" placeholder="Enter a currency type to convert from..." required> -->
         <br><br><br>
-        <input type="text" id="to" class="to form-input" placeholder="Enter a currency type to convert to..." required>
+        <!-- <input type="text" id="to" class="to form-input" placeholder="Enter a currency type to convert to..." required> -->
         <br><br><br>
         <input type="submit" value="CONVERT" class="submit">
       </div>

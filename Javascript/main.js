@@ -17,7 +17,8 @@ var resultContainer = $("<div class='outputField'>");
 var resultSymbol = $("<div class='newSymbol'>");
 var resultAmount = $("<div class='newAmount'>");
 var resultCountry = $("<div class='newCountry'>");
-var symbol;
+var selectedSymbol;
+var symbols = [];
 
 getData();
 
@@ -30,35 +31,50 @@ function getData() {
     url: "https://free.currconv.com/api/v7/currencies?apiKey=60e32d887b397ac6240b",
     method: "GET"
   }).then(function (response) {
-
     currencyArray = Object.values(response.results);
-
+    currencyArray.map(ca => symbols.push(ca.id))
+    console.log(symbols)
+    populateSymbol()
   });
 };
 
 function setSymbol() {
-  var to = $(".to").val();
+  var to = $("#to").val();
 
   for (var i = 0; i < currencyArray.length; i++) {
 
     if (to === currencyArray[i].id) {
-      symbol = currencyArray[i].currencySymbol;
-      resultSymbol.append(symbol);
+      selectedSymbol = currencyArray[i].currencySymbol;
+      resultSymbol.append(selectedSymbol);
     }
   }
 
 };
 
-$(".submit").on("click", function (event) {
+function populateSymbol() {
+  console.log(symbols)
+  var options = symbols.map(s => `<option value="${s}">${s}</option>`)
+  $(".dropdown").append(options);
+};
 
+function empty() {
+  resultSymbol.empty()
+  resultAmount.empty()
+  resultCountry.empty()
+  resultContainer.empty()
+}
+
+$(".submit").on("click", function (event) {
   event.preventDefault();
+
+  empty();
 
   var main = $("#resultsArea")
 
   var ccaKey = "60e32d887b397ac6240b";
-  var from = $(".from").val();
-  var to = $(".to").val();
-  var amount = $(".amount").val()
+  var from = $("#from").val();
+  var to = $("#to").val();
+  var amount = $("#amount").val()
 
   // console.log(from)
   // console.log(to)
@@ -99,7 +115,7 @@ $(".submit").on("click", function (event) {
   database.ref().push({
     amount: amount,
     to: to,
-    symbol: symbol
+    symbol: selectedSymbol
   });
 
 });
@@ -167,7 +183,7 @@ $.ajax({
 // ============================================= //  
 
 function reset() {
-  $(".from").val(" ");
-  $(".to").val(" ");
-  $(".amount").val(" ");
+  $("#from").val(" ");
+  $("#to").val(" ");
+  $("#amount").val(" ");
 }
